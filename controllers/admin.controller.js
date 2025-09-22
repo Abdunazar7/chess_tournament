@@ -1,5 +1,6 @@
 import Admin from "../models/admin.model.js";
 import bcrypt from "bcrypt";
+import ApiError from "../helpers/api.error.js";
 
 // ✅ Create
 export const addAdmin = async (req, res, next) => {
@@ -8,7 +9,7 @@ export const addAdmin = async (req, res, next) => {
 
     const candidate = await Admin.findOne({ where: { email } });
     if (candidate) {
-      return res.status(400).json({ message: "Admin already exists" });
+      return next(ApiError.badRequest("Admin already exists"));
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +40,7 @@ export const getOneAdmin = async (req, res, next) => {
     const { id } = req.params;
     const admin = await Admin.findByPk(id);
     if (!admin) {
-      return res.status(404).json({ message: "Admin not found" });
+      return next(ApiError.notFound("Admin not found"));
     }
     res.status(200).json(admin);
   } catch (error) {
@@ -56,7 +57,7 @@ export const updateAdmin = async (req, res, next) => {
       returning: true,
     });
     if (rows === 0) {
-      return res.status(404).json({ message: "Admin not found" });
+      return next(ApiError.notFound("Admin not found"));
     }
     res.status(200).json({ message: "Admin data updated", data: updatedAdmin });
   } catch (error) {
@@ -70,7 +71,7 @@ export const deleteAdmin = async (req, res, next) => {
     const { id } = req.params;
     const deleted = await Admin.destroy({ where: { id } });
     if (!deleted) {
-      return res.status(404).json({ message: "Admin not found" });
+      return next(ApiError.notFound("Admin not found"));
     }
     res.status(200).json({ message: "Admin deleted" });
   } catch (error) {

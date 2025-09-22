@@ -8,7 +8,7 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 
 const logger = createLogger({
   format: combine(
-    label({ label: "Mobile-Service-API" }),
+    label({ label: "CHESS-TOURNAMENT-API" }),
     timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
     colorize(),
     myFormat

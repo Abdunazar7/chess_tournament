@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import config from "config";
 import ApiError from "../helpers/api.error.js";
 
-// ✅ Admin login
+// Admin login
 export const adminLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -44,7 +44,7 @@ export const adminLogin = async (req, res, next) => {
   }
 };
 
-// ✅ Admin logout
+// Admin logout
 export const adminLogout = async (req, res, next) => {
   try {
     const { refreshToken } = req.cookies;
@@ -72,7 +72,7 @@ export const adminLogout = async (req, res, next) => {
   }
 };
 
-// ✅ Refresh token
+// Refresh token
 export const refreshToken = async (req, res, next) => {
   try {
     const { refreshToken } = req.cookies;

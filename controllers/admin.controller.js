@@ -2,7 +2,7 @@ import Admin from "../models/admin.model.js";
 import bcrypt from "bcrypt";
 import ApiError from "../helpers/api.error.js";
 
-// ✅ Create
+// Create
 export const addAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -24,7 +24,7 @@ export const addAdmin = async (req, res, next) => {
   }
 };
 
-// ✅ Get all
+// Get all
 export const getAdmins = async (req, res, next) => {
   try {
     const admins = await Admin.findAll();
@@ -34,7 +34,7 @@ export const getAdmins = async (req, res, next) => {
   }
 };
 
-// ✅ Get one
+// Get one
 export const getOneAdmin = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -48,7 +48,7 @@ export const getOneAdmin = async (req, res, next) => {
   }
 };
 
-// ✅ Update
+// Update
 export const updateAdmin = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -65,7 +65,7 @@ export const updateAdmin = async (req, res, next) => {
   }
 };
 
-// ✅ Delete
+// Delete
 export const deleteAdmin = async (req, res, next) => {
   try {
     const { id } = req.params;

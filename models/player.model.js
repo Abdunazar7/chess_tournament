@@ -1,20 +1,18 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
-const Admin = sequelize.define(
-  "admin",
+const Player = sequelize.define(
+  "player",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     full_name: { type: DataTypes.STRING, allowNull: false },
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
-    password: { type: DataTypes.TEXT, allowNull: false },
-    role: {
-      type: DataTypes.ENUM("admin", "superAdmin", "creator"),
-      allowNull: false,
-    },
+    rating: { type: DataTypes.INTEGER, allowNull: false },
+    country: { type: DataTypes.STRING, allowNull: false },
+    age: { type: DataTypes.INTEGER, allowNull: false },
   },
   { freezeTableName: true, timestamps: true }
 );
 
-export default Admin;
+export default Player;
